@@ -23,7 +23,7 @@ namespace MonopolyJR_text
 
         protected override void printActionMessage(Player p)
         {
-            Console.WriteLine(p.getName() + " pays " + tax.ToString() + " to loose change jar for landing on " + name);
+            Console.WriteLine($"{p.getName()} pays {tax} to loose change jar for landing on {name}");
         }
     }
 }

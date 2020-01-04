@@ -20,7 +20,7 @@ namespace MonopolyJR_text
 
         protected override void printActionMessage(Player p)
         {
-            Console.WriteLine(p.getName() + " collects $3 landing passing go");
+            Console.WriteLine($"{p.getName()} collects {Constants.PassGoBonues} landing passing go");
         }
     }
 }

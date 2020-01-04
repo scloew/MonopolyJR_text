@@ -24,8 +24,7 @@ namespace MonopolyJR_text
 
         protected override void printActionMessage(Player p)
         {
-            Console.WriteLine(p.getName() + " collects $" +
-                                moneyPot.ToString() + " from loose change jar");
+            Console.WriteLine($"{p.getName()} collects ${moneyPot} from loose change jar");
 
         }
 

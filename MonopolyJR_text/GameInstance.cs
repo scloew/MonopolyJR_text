@@ -31,7 +31,7 @@ namespace MonopolyJR_text
             {
                 if ((p.getMoney() == winScore) ^ findLosers)
                 {
-                    Console.WriteLine("With $" + p.getMoney() + " " + p.getName() + " " + message);
+                    Console.WriteLine($"With ${p.getMoney()} {p.getName()} {message}");
                 }
             }
         }
@@ -65,22 +65,22 @@ namespace MonopolyJR_text
             do
             {
                 loc = activePlayer.getLocation();
-                Console.WriteLine(activePlayer.getName() + " moves to " + board[activePlayer.getLocation()].getName());
+                Console.WriteLine($"{activePlayer.getName()} moves to {board[loc].getName()}");
                 board[activePlayer.getLocation()].action(activePlayer);
             } while (loc != activePlayer.getLocation() && !activePlayer.isBankRupt());
             if (loc < origLoc)
             {
-                Console.WriteLine(activePlayer.getName() + " passes Go and collects $3");
+                Console.WriteLine($"{activePlayer.getName()} passes Go and collects {Constants.PassGoBonues }");
                 activePlayer.addMoney(3);
             }
         }
 
         private void printTurnIndex(int TurnIndex)
         {
-            Console.WriteLine("========\n" + "Turn: " + TurnIndex + "\n========");
+            Console.WriteLine($"========\n Turn: {TurnIndex} \n========\n");
             foreach (Player p in players)
             {
-                Console.WriteLine(p.getName() + " has " + p.getMoney().ToString());
+                Console.WriteLine($"{p.getName()} has {p.getMoney()}");
             }
         }
 

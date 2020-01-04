@@ -17,7 +17,7 @@ namespace MonopolyJR_text
 
         protected override void printActionMessage(Player p)
         {
-            Console.WriteLine(p.getName() + " rides " + name + " and rolls again");
+            Console.WriteLine($"{p.getName()} rides {name} and rolls agains");
         }
     }
 }

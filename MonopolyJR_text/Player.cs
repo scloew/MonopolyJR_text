@@ -38,7 +38,7 @@ namespace MonopolyJR_text
 
         public string getInfo()
         {
-            return (name + " " + money + "\n");
+            return ($"{name} {money}\n");
         }
 
         public int getLocation()
@@ -56,7 +56,7 @@ namespace MonopolyJR_text
         {
             int roll = r.Next(1, 7);
             setLocation(location + roll);
-            Console.WriteLine(name + " rolls " + roll);
+            Console.WriteLine($"{name} rolls {roll}");
         }
     }
 }

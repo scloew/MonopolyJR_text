@@ -9,10 +9,11 @@ namespace MonopolyJR_text
         private MonopolyProperty neighbor { get; set; }
 
         delegate void actionDelegate(Player p);
-        private actionDelegate ad;
+        private actionDelegate ad; //should change name to action
 
         delegate void printDelegate(Player p);
-        private printDelegate pd;
+        private printDelegate pd; //should change name to print
+        //TODO use lambdas to set login of delegates
 
 
         public MonopolyProperty(string name, int rent) : base(name)

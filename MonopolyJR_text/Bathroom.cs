@@ -4,11 +4,8 @@ namespace MonopolyJR_text
 {
     class Bathroom : MonopolySquare
     {
-        public Bathroom(string name) : base(name)
-        {
-
-        }
-
+        public Bathroom(string name) : base(name) { }
+        
         public override void action(Player p)
         {
             printActionMessage(p);
@@ -16,7 +13,7 @@ namespace MonopolyJR_text
 
         protected override void printActionMessage(Player p)
         {
-            Console.WriteLine(p.getName() + " lands on bathroom");
+            Console.WriteLine($"{p.getName()} lands on bathroom");
         }
     }
 }
