@@ -14,7 +14,7 @@ namespace MonopolyJR_text
         {
             //Tuple<board index, rent price, name>
             Tuple<int, int, string>[] properties = { Tuple.Create(2, 1, "Magenta"),  Tuple.Create(6, 2, "Azure"), Tuple.Create(11, 2, "Purple"),
-                                            Tuple.Create(14, 3, "Oragne"), Tuple.Create(18, 3, "Red"), Tuple.Create(22, 4, "Yellow"),
+                                            Tuple.Create(14, 3, "Orange"), Tuple.Create(18, 3, "Red"), Tuple.Create(22, 4, "Yellow"),
                                             Tuple.Create(27, 4, "Green"), Tuple.Create(30, 5, "Blue")};
 
             foreach (Tuple<int, int, string> prop in properties)
