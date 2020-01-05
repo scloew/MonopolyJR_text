@@ -12,13 +12,13 @@ namespace MonopolyJR_text
         public override void action(Player p)
         {
             base.action(p);
-            printActionMessage(p);
+            PrintActionMessage(p.getName());
             p.setLocation(10);
         }
 
-        protected override void printActionMessage(Player p)
+        protected override void PrintActionMessage(string playerName)
         {
-            Console.WriteLine($"{p.getName()} goes straight to bathroom");
+            Console.WriteLine($"{playerName} goes straight to bathroom");
         }
     }
 }

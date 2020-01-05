@@ -9,7 +9,7 @@ namespace MonopolyJR_text
         private Random r;
         private int chanceAffect;
 
-        delegate void printDelegate(Player p);
+        delegate void printDelegate(string playerName);
         private printDelegate pd;
 
         public ChanceSquare(string name) : base(name)
@@ -34,22 +34,22 @@ namespace MonopolyJR_text
                 pd = printMove;
             }
 
-            printActionMessage(p);
+            PrintActionMessage(p.getName());
         }
 
-        private void printAddMon(Player p)
+        private void printAddMon(string playerName)
         {
-            Console.WriteLine("Chance adds $" + chanceAffect.ToString() + " to " + p.getName());
+            Console.WriteLine("Chance adds $" + chanceAffect.ToString() + " to " + playerName);
         }
 
-        private void printMove(Player p)
+        private void printMove(string playerName)
         {
-            Console.WriteLine("Chance moves " + p.getName() + " to square " + chanceAffect.ToString());
+            Console.WriteLine("Chance moves " + playerName + " to square " + chanceAffect.ToString());
         }
 
-        protected override void printActionMessage(Player p)
+        protected override void PrintActionMessage(string playerName)
         {
-            pd(p);
+            pd(playerName);
         }
     }
 }

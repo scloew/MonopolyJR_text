@@ -11,7 +11,7 @@ namespace MonopolyJR_text
         delegate void actionDelegate(Player p);
         private actionDelegate ad; //should change name to action
 
-        delegate void printDelegate(Player p);
+        delegate void printDelegate(string p);
         private printDelegate pd; //should change name to print
         //TODO use lambdas to set login of delegates
 
@@ -61,24 +61,24 @@ namespace MonopolyJR_text
 
         public override void action(Player p)
         {
-            printActionMessage(p);
+            PrintActionMessage(p.getName());
             ad(p);
         }
 
-        private void printPurchaseMessage(Player p)
+        private void printPurchaseMessage(string playerName)
         {
-            Console.WriteLine(p.getName() + " pays $" + rent.ToString() + " to purchase " + name);
+            Console.WriteLine(playerName + " pays $" + rent.ToString() + " to purchase " + name);
             pd = printInteraction;
         }
 
-        private void printInteraction(Player p)
+        private void printInteraction(string playerName)
         {
-            Console.WriteLine(p.getName() + " pays " + owner.getName() + " $" + rent);
+            Console.WriteLine(playerName + " pays " + owner.getName() + " $" + rent);
         }
 
-        protected override void printActionMessage(Player p)
+        protected override void PrintActionMessage(string playerName)
         {
-            pd(p);
+            pd(playerName);
         }
     }
 }

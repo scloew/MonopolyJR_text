@@ -68,7 +68,12 @@ namespace MonopolyJR_text
                 Console.WriteLine($"{activePlayer.getName()} moves to {board[loc].getName()}");
                 board[activePlayer.getLocation()].action(activePlayer);
             } while (loc != activePlayer.getLocation() && !activePlayer.isBankRupt());
-        }
+            if (loc < origLoc)
+            {
+              Console.WriteLine($"{activePlayer.getName()} passes Go and collects {Constants.PassGoBonues }");
+              activePlayer.addMoney(3);
+            }
+    }
 
         private void printTurnIndex(int TurnIndex)
         {

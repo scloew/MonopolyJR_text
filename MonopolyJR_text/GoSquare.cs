@@ -18,9 +18,9 @@ namespace MonopolyJR_text
             p.addMoney(3);
         }
 
-        protected override void printActionMessage(Player p)
+        protected override void PrintActionMessage(string playerName)
         {
-            Console.WriteLine($"{p.getName()} collects {Constants.PassGoBonues} landing passing go");
+            Console.WriteLine($"{playerName} lands on go");
         }
     }
 }

@@ -8,12 +8,12 @@ namespace MonopolyJR_text
         
         public override void action(Player p)
         {
-            printActionMessage(p);
+            PrintActionMessage(p.getName());
         }
 
-        protected override void printActionMessage(Player p)
+        protected override void PrintActionMessage(string playerName)
         {
-            Console.WriteLine($"{p.getName()} lands on bathroom");
+            Console.WriteLine($"{playerName} lands on bathroom");
         }
     }
 }

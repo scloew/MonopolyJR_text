@@ -13,15 +13,16 @@ namespace MonopolyJR_text
         private static void buildProperties(MonopolySquare[] board)
         {
             //Tuple<board index, rent price, name>
-            Tuple<int, int, string>[] properties = { Tuple.Create(2, 1, "Magenta"),  Tuple.Create(6, 2, "Azure"), Tuple.Create(11, 2, "Purple"),
-                                            Tuple.Create(14, 3, "Orange"), Tuple.Create(18, 3, "Red"), Tuple.Create(22, 4, "Yellow"),
-                                            Tuple.Create(27, 4, "Green"), Tuple.Create(30, 5, "Blue")};
+            Tuple<int, int, string>[] properties = { Tuple.Create(2, 1, "Magenta"),  Tuple.Create(6, 2, "Azure"),
+                                                     Tuple.Create(11, 2, "Purple"), Tuple.Create(14, 3, "Orange"),
+                                                     Tuple.Create(18, 3, "Red"), Tuple.Create(22, 4, "Yellow"),
+                                                     Tuple.Create(27, 4, "Green"), Tuple.Create(30, 5, "Blue")};
 
             foreach (Tuple<int, int, string> prop in properties)
             //loop to initialize all board properties
             {
-                MonopolyProperty mp1 = new MonopolyProperty(prop.Item3 + " 1", prop.Item2);
-                MonopolyProperty mp2 = new MonopolyProperty(prop.Item3 + " 2", prop.Item2 + 1);
+                MonopolyProperty mp1 = new MonopolyProperty($"{prop.Item3} 1", prop.Item2);
+                MonopolyProperty mp2 = new MonopolyProperty($"{prop.Item3} 2", prop.Item2);
 
                 mp1.setNeighbor(mp2);
                 mp2.setNeighbor(mp1);
