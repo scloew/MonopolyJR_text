@@ -14,7 +14,7 @@ namespace MonopolyJR_text
             Lc = lc;
         }
 
-        public override void action(Player p)
+        public override void Action(Player p)
         {
             PrintActionMessage(p.Name);
             p.addMoney(-1 * Tax);

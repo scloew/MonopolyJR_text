@@ -16,16 +16,6 @@ namespace MonopolyJR_text
             RNG = new Random();
         }
 
-        //public int getMoney()
-        //{
-        //    return Money;
-        //}
-
-        //public string getName()
-        //{
-        //    return name;
-        //}
-
         public void addMoney(int n)
         {
             Money += n;

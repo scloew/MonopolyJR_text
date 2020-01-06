@@ -1,5 +1,4 @@
 ﻿1) Have game instance self contained -> i.e. creates players
-2) C# getter/setter rules
 3) check for circular references; properties/monopoly
 4) arrays -> List
 5) hooman player

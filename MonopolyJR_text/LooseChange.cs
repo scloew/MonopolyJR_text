@@ -15,7 +15,7 @@ namespace MonopolyJR_text
             MoneyPot = 0;
         }
 
-        public override void action(Player p)
+        public override void Action(Player p)
         {
             PrintActionMessage(p.Name);
             p.addMoney(MoneyPot);

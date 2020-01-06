@@ -17,7 +17,7 @@ namespace MonopolyJR_text
             RNG = new Random();
         }
 
-        public override void action(Player p)
+        public override void Action(Player p)
         {
             int action = RNG.Next(1, 2);
 
@@ -25,26 +25,16 @@ namespace MonopolyJR_text
             {
                 ChanceAffect = RNG.Next(-5, 6);
                 p.addMoney(ChanceAffect);
-                pd = printAddMon;
+                pd = name => {Console.WriteLine($"Chance adds ${ChanceAffect} to {name}"); };
             }
             else //else move
             {
                 ChanceAffect = RNG.Next(0, 31);
                 p.setLocation(ChanceAffect);
-                pd = printMove;
-            }
+                pd = name => { Console.WriteLine($"Chance moves anme to {ChanceAffect}"); };
+      }
 
             PrintActionMessage(p.Name);
-        }
-
-        private void printAddMon(string playerName)
-        {
-            Console.WriteLine("Chance adds $" + ChanceAffect.ToString() + " to " + playerName);
-        }
-
-        private void printMove(string playerName)
-        {
-            Console.WriteLine("Chance moves " + playerName + " to square " + ChanceAffect.ToString());
         }
 
         protected override void PrintActionMessage(string playerName)

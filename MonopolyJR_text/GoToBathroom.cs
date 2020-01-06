@@ -9,9 +9,9 @@ namespace MonopolyJR_text
 
         }
 
-        public override void action(Player p)
+        public override void Action(Player p)
         {
-            base.action(p);
+            base.Action(p);
             PrintActionMessage(p.Name);
             p.setLocation(10);
         }

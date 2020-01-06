@@ -6,7 +6,7 @@ namespace MonopolyJR_text
     {
         public Bathroom(string name) : base(name) { }
         
-        public override void action(Player p)
+        public override void Action(Player p)
         {
             PrintActionMessage(p.Name);
         }

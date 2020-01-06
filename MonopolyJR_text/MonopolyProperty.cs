@@ -9,18 +9,28 @@ namespace MonopolyJR_text
         public MonopolyProperty Neighbor { get; set; } //need to resolve this ciruclar reference
 
         delegate void actionDelegate(Player p);
-        private actionDelegate ad; //should change name to action
+        private actionDelegate ActionDel; 
 
         delegate void printDelegate(string p);
-        private printDelegate pd; //should change name to print
-        //TODO use lambdas to set login of delegates
+        private printDelegate Print;
 
 
         public MonopolyProperty(string name, int rent) : base(name)
         {
-            this.Rent = rent;
-            this.ad = firstAction;
-            this.pd = printPurchaseMessage;
+            Rent = rent;
+            ActionDel = player => 
+            {
+              Owner = player;
+              player.addMoney(-1 * Rent);
+
+              if (Neighbor.Owner == player)
+              {
+                setMonop();
+                Neighbor.setMonop();
+              } //TODO fix circular reference
+            };
+
+            Print = playerName => { Console.WriteLine($"{playerName} pays ${Rent} to purchase {Name}"); };
         }
 
         public void setMonop()
@@ -28,47 +38,17 @@ namespace MonopolyJR_text
             Rent *= 2;
         }
 
-        private void subsequentActions(Player p)
-        {
-            Owner.addMoney(Rent);
-            p.addMoney(-1 * Rent);
-        }
-
-        public void firstAction(Player p)
-        {
-            Owner = p;
-            p.addMoney(-1 * Rent);
-
-            if (Neighbor.Owner == p)
-            {
-                setMonop();
-                Neighbor.setMonop();
-            } //TODO fix circular reference
-
-            ad = subsequentActions;
-            pd = printInteraction;
-        }
-
-        public override void action(Player p)
+        public override void Action(Player p)
         {
             PrintActionMessage(p.Name);
-            ad(p);
-        }
-
-        private void printPurchaseMessage(string playerName)
-        {
-            Console.WriteLine(playerName + " pays $" + Rent.ToString() + " to purchase " + Name);
-            pd = printInteraction;
-        }
-
-        private void printInteraction(string playerName)
-        {
-            Console.WriteLine(playerName + " pays " + Owner.Name + " $" + Rent);
+            ActionDel(p);
+            ActionDel = player => { Owner.addMoney(Rent); player.addMoney(-1 * Rent); };
         }
 
         protected override void PrintActionMessage(string playerName)
         {
-            pd(playerName);
+            Print(playerName);
+            Print = name => { Console.WriteLine($"{name} pays {Owner.Name} #{Rent}"); };
         }
     }
 }

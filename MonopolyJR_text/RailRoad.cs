@@ -9,7 +9,7 @@ namespace MonopolyJR_text
         {
         }
 
-        public override void action(Player p)
+        public override void Action(Player p)
         {
             PrintActionMessage(p.Name);
             p.move();

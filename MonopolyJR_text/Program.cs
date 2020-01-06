@@ -16,7 +16,7 @@ namespace MonopolyJR_text
             players[1] = new Player("Carnegie");
 
             MonopolySquare[] board = new MonopolySquare[32];
-            BoardBuilder.buildBoard(board);
+            BoardBuilder.BuildBoard(board);
             foreach (Player p in players)
             {
                 Console.Write(p.getInfo());

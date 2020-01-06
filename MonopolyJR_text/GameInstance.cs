@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 namespace MonopolyJR_text
 {
     class GameInstance
-    //Should have interface for playGame, takeTurn, printResults
-    {
-        private Player[] Players;
+    /*
+   Should have interface for playGame, takeTurn, printResults to make project more reusable, 
+   but also kinda overkill  
+   */
+  {
+    private Player[] Players;
         private MonopolySquare[] Board;
         private bool EndGame;
 
@@ -66,12 +69,12 @@ namespace MonopolyJR_text
             {
                 loc = activePlayer.getLocation();
                 Console.WriteLine($"{activePlayer.Name} moves to {Board[loc].Name}");
-                Board[activePlayer.getLocation()].action(activePlayer);
+                Board[activePlayer.getLocation()].Action(activePlayer);
             } while (loc != activePlayer.getLocation() && !activePlayer.isBankRupt());
             if (loc < origLoc)
             {
               Console.WriteLine($"{activePlayer.Name} passes Go and collects {Constants.PassGoBonues }");
-              activePlayer.addMoney(3);
+              activePlayer.addMoney(Constants.PassGoBonues);
             }
     }
 
@@ -80,7 +83,7 @@ namespace MonopolyJR_text
             Console.WriteLine($"========\n Turn: {TurnIndex} \n========\n");
             foreach (Player p in Players)
             {
-                Console.WriteLine($"{p.Name} has {p.Name}");
+                Console.WriteLine($"{p.Name} has {p.Money}");
             }
         }
 
@@ -97,15 +100,13 @@ namespace MonopolyJR_text
         {
             Player activePlayer = Players[0];
             int turnCounter = 1;
-
-            //Game can last max of 100 turns
-            //Ends as soon as any player is bankrupt
+ 
             do
             {
                 printTurnIndex(turnCounter);
                 turn();
                 turnCounter += 1;
-            } while (!EndGame && turnCounter < 100);
+            } while (!EndGame && turnCounter < Constants.TurnLimit);
 
             printResults();
 

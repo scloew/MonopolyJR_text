@@ -6,6 +6,7 @@ namespace MonopolyJR_text
 {
   static class Constants
   {
-    public const int PassGoBonues = 3; //should have way to instantiate this in constructor
+    public const int PassGoBonues = 3; //Not sure these should be hardcoded like this
+    public const int TurnLimit = 100;
   }
 }

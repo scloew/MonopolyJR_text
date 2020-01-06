@@ -15,7 +15,7 @@ namespace MonopolyJR_text
             this.Name = name;
         }
 
-        public abstract void action(Player p);
+        public abstract void Action(Player p);
 
         protected abstract void PrintActionMessage(string playerName); //TODO make this take string (p.getName()) not whole player
         //TODO this should take string not player
