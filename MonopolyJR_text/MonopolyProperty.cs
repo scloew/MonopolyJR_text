@@ -4,9 +4,9 @@ namespace MonopolyJR_text
 {
     class MonopolyProperty : MonopolySquare
     {
-        private int rent { get; set; }
-        private Player owner { get; set; }
-        private MonopolyProperty neighbor { get; set; }
+        public int Rent { get; set; }
+        public Player Owner { get; set; }
+        public MonopolyProperty Neighbor { get; set; } //need to resolve this ciruclar reference
 
         delegate void actionDelegate(Player p);
         private actionDelegate ad; //should change name to action
@@ -18,42 +18,32 @@ namespace MonopolyJR_text
 
         public MonopolyProperty(string name, int rent) : base(name)
         {
-            this.rent = rent;
+            this.Rent = rent;
             this.ad = firstAction;
             this.pd = printPurchaseMessage;
         }
 
-        public void setNeighbor(MonopolyProperty mp)
-        {
-            neighbor = mp;
-        }
-
         public void setMonop()
         {
-            rent *= 2;
-        }
-
-        public Player getOwner()
-        {
-            return owner;
+            Rent *= 2;
         }
 
         private void subsequentActions(Player p)
         {
-            owner.addMoney(rent);
-            p.addMoney(-1 * rent);
+            Owner.addMoney(Rent);
+            p.addMoney(-1 * Rent);
         }
 
         public void firstAction(Player p)
         {
-            owner = p;
-            p.addMoney(-1 * rent);
+            Owner = p;
+            p.addMoney(-1 * Rent);
 
-            if (neighbor.getOwner() == p)
+            if (Neighbor.Owner == p)
             {
                 setMonop();
-                neighbor.setMonop();
-            }
+                Neighbor.setMonop();
+            } //TODO fix circular reference
 
             ad = subsequentActions;
             pd = printInteraction;
@@ -61,19 +51,19 @@ namespace MonopolyJR_text
 
         public override void action(Player p)
         {
-            PrintActionMessage(p.getName());
+            PrintActionMessage(p.Name);
             ad(p);
         }
 
         private void printPurchaseMessage(string playerName)
         {
-            Console.WriteLine(playerName + " pays $" + rent.ToString() + " to purchase " + name);
+            Console.WriteLine(playerName + " pays $" + Rent.ToString() + " to purchase " + Name);
             pd = printInteraction;
         }
 
         private void printInteraction(string playerName)
         {
-            Console.WriteLine(playerName + " pays " + owner.getName() + " $" + rent);
+            Console.WriteLine(playerName + " pays " + Owner.Name + " $" + Rent);
         }
 
         protected override void PrintActionMessage(string playerName)

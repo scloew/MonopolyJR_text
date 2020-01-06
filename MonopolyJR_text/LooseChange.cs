@@ -8,29 +8,29 @@ namespace MonopolyJR_text
 {
     class LooseChange : MonopolySquare
     {
-        private int moneyPot;
+        private int MoneyPot;
 
         public LooseChange(string name) : base(name)
         {
-            this.moneyPot = 0;
+            MoneyPot = 0;
         }
 
         public override void action(Player p)
         {
-            PrintActionMessage(p.getName());
-            p.addMoney(moneyPot);
-            moneyPot = 0;
+            PrintActionMessage(p.Name);
+            p.addMoney(MoneyPot);
+            MoneyPot = 0;
         }
 
         protected override void PrintActionMessage(string playerName)
         {
-            Console.WriteLine($"{playerName} collects ${moneyPot} from loose change jar");
+            Console.WriteLine($"{playerName} collects ${MoneyPot} from loose change jar");
 
         }
 
         public void addMoney(int n)
         {
-            moneyPot += n;
+            MoneyPot += n;
         }
     }
 }

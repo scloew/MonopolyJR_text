@@ -24,8 +24,8 @@ namespace MonopolyJR_text
                 MonopolyProperty mp1 = new MonopolyProperty($"{prop.Item3} 1", prop.Item2);
                 MonopolyProperty mp2 = new MonopolyProperty($"{prop.Item3} 2", prop.Item2);
 
-                mp1.setNeighbor(mp2);
-                mp2.setNeighbor(mp1);
+                mp1.Neighbor = mp2;
+                mp2.Neighbor = mp1;
 
                 board[prop.Item1] = mp1;
                 board[prop.Item1 + 1] = mp2;

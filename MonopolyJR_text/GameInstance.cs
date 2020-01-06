@@ -9,16 +9,16 @@ namespace MonopolyJR_text
     class GameInstance
     //Should have interface for playGame, takeTurn, printResults
     {
-        Player[] players;
-        MonopolySquare[] board;
-        bool endGame;
+        private Player[] Players;
+        private MonopolySquare[] Board;
+        private bool EndGame;
 
 
         public GameInstance(Player[] players, MonopolySquare[] board)
         {
-            this.players = players;
-            this.board = board;
-            this.endGame = false;
+            Players = players;
+            Board = board;
+            EndGame = false;
 
             playGame();
         }
@@ -27,11 +27,11 @@ namespace MonopolyJR_text
         private void print(int winScore, bool findLosers, string message)
         //findLosers = 1 to print losers, 0 to find winners
         {
-            foreach (Player p in players)
+            foreach (Player p in Players)
             {
-                if ((p.getMoney() == winScore) ^ findLosers)
+                if ((p.Money == winScore) ^ findLosers)
                 {
-                    Console.WriteLine($"With ${p.getMoney()} {p.getName()} {message}");
+                    Console.WriteLine($"With ${p.Money} {p.Name} {message}");
                 }
             }
         }
@@ -40,9 +40,9 @@ namespace MonopolyJR_text
         //Returns the maximum score of any players
         {
             int winSum = 0;
-            foreach (Player p in players)
+            foreach (Player p in Players)
             {
-                winSum = Math.Max(winSum, p.getMoney());
+                winSum = Math.Max(winSum, p.Money);
             }
             return winSum;
         }
@@ -65,12 +65,12 @@ namespace MonopolyJR_text
             do
             {
                 loc = activePlayer.getLocation();
-                Console.WriteLine($"{activePlayer.getName()} moves to {board[loc].getName()}");
-                board[activePlayer.getLocation()].action(activePlayer);
+                Console.WriteLine($"{activePlayer.Name} moves to {Board[loc].Name}");
+                Board[activePlayer.getLocation()].action(activePlayer);
             } while (loc != activePlayer.getLocation() && !activePlayer.isBankRupt());
             if (loc < origLoc)
             {
-              Console.WriteLine($"{activePlayer.getName()} passes Go and collects {Constants.PassGoBonues }");
+              Console.WriteLine($"{activePlayer.Name} passes Go and collects {Constants.PassGoBonues }");
               activePlayer.addMoney(3);
             }
     }
@@ -78,24 +78,24 @@ namespace MonopolyJR_text
         private void printTurnIndex(int TurnIndex)
         {
             Console.WriteLine($"========\n Turn: {TurnIndex} \n========\n");
-            foreach (Player p in players)
+            foreach (Player p in Players)
             {
-                Console.WriteLine($"{p.getName()} has {p.getMoney()}");
+                Console.WriteLine($"{p.Name} has {p.Name}");
             }
         }
 
         private void turn()
         {
-            for (int i = 0; i < players.Length && !endGame; i++)
+            for (int i = 0; i < Players.Length && !EndGame; i++)
             {
-                takeTurn(players[i]);
-                endGame = players[i].isBankRupt();
+                takeTurn(Players[i]);
+                EndGame = Players[i].isBankRupt();
             }
         }
 
         private void playGame()
         {
-            Player activePlayer = players[0];
+            Player activePlayer = Players[0];
             int turnCounter = 1;
 
             //Game can last max of 100 turns
@@ -105,7 +105,7 @@ namespace MonopolyJR_text
                 printTurnIndex(turnCounter);
                 turn();
                 turnCounter += 1;
-            } while (!endGame && turnCounter < 100);
+            } while (!EndGame && turnCounter < 100);
 
             printResults();
 

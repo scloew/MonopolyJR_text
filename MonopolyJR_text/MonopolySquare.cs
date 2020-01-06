@@ -8,16 +8,11 @@ namespace MonopolyJR_text
 {
     abstract class MonopolySquare
     {
-        protected string name { get; }
+        public string Name { get; }
 
         public MonopolySquare(string name)
         {
-            this.name = name;
-        }
-
-        public string getName()
-        {
-            return name;
+            this.Name = name;
         }
 
         public abstract void action(Player p);

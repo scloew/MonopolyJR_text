@@ -8,7 +8,7 @@ namespace MonopolyJR_text
         
         public override void action(Player p)
         {
-            PrintActionMessage(p.getName());
+            PrintActionMessage(p.Name);
         }
 
         protected override void PrintActionMessage(string playerName)

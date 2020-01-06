@@ -4,26 +4,26 @@ namespace MonopolyJR_text
 {
     class TaxSquare : MonopolySquare
     {
-        protected int tax;
-        private LooseChange lc;
+        protected int Tax;
+        private LooseChange Lc; //TODO do I want square to have all LC or just addmoney method
 
 
         public TaxSquare(string name, int tax, LooseChange lc) : base(name)
         {
-            this.tax = tax;
-            this.lc = lc;
+            Tax = tax;
+            Lc = lc;
         }
 
         public override void action(Player p)
         {
-            PrintActionMessage(p.getName());
-            p.addMoney(-1 * tax);
-            lc.addMoney(tax);
+            PrintActionMessage(p.Name);
+            p.addMoney(-1 * Tax);
+            Lc.addMoney(Tax);
         }
 
         protected override void PrintActionMessage(string playerName)
         {
-            Console.WriteLine($"{playerName} pays {tax} to loose change jar for landing on {name}");
+            Console.WriteLine($"{playerName} pays {Tax} to loose change jar for landing on {Name}");
         }
     }
 }
