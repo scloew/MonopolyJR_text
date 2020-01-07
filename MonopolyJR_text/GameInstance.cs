@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MonopolyJR_text
 {
@@ -13,11 +10,14 @@ namespace MonopolyJR_text
    */
   {
         List<Player> Players;
-        private MonopolySquare[] Board;
+        private List<MonopolySquare> Board;
         private bool EndGame;
 
-        public GameInstance(String[] players, MonopolySquare[] board)
+        public GameInstance(String[] players, List<MonopolySquare> board = null)
         {
+            if(board==null){
+                board = BoardBuilder.BuildBoard();
+            }
             Players = new List<Player>();
             foreach(string name in players) {
                Players.Add(new Player(name));
@@ -58,9 +58,9 @@ namespace MonopolyJR_text
             int winScore = getWinnerScore();
 
             Console.WriteLine("\n*******\nWinners\n*******\n");
-            print(winScore, false, "wins the game!!!!!");
+            print(winScore, Constants.FindWinner, "wins the game!!!!!");
             Console.WriteLine("*******\nLosers\n*******\n");
-            print(winScore, true, "loses the game :(");
+            print(winScore, Constants.FindLoser, "loses the game :(");
         }
 
         private void takeTurn(Player activePlayer)
@@ -110,9 +110,7 @@ namespace MonopolyJR_text
                 turn();
                 turnCounter += 1;
             } while (!EndGame && turnCounter < Constants.TurnLimit);
-
             printResults();
-
         }
     }
 }

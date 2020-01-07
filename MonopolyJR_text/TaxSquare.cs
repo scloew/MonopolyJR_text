@@ -5,20 +5,22 @@ namespace MonopolyJR_text
     class TaxSquare : MonopolySquare
     {
         protected int Tax;
-        private LooseChange Lc; //TODO do I want square to have all LC or just addmoney method
+
+        delegate void DepositToLooseChange(int money);
+        private DepositToLooseChange Deposit;
 
 
         public TaxSquare(string name, int tax, LooseChange lc) : base(name)
         {
             Tax = tax;
-            Lc = lc;
+            Deposit = lc.addMoney;
         }
 
         public override void Action(Player p)
         {
             PrintActionMessage(p.Name);
             p.addMoney(-1 * Tax);
-            Lc.addMoney(Tax);
+            Deposit(Tax);
         }
 
         protected override void PrintActionMessage(string playerName)

@@ -11,20 +11,18 @@ namespace MonopolyJR_text
 
             string[] players = {"Rockerfell", "Carnegie" };
 
-            MonopolySquare[] board = new MonopolySquare[32];
-            BoardBuilder.BuildBoard(board);
             foreach (string p in players)
             {
                 Console.WriteLine(p);
             }
-            GameInstance game = new GameInstance(players, board);
+            GameInstance game = new GameInstance(players);
 
             Console.WriteLine("Enter enter key to begin new game");
 
             Console.ReadKey();
 
             string[] newPlayers = { "Rockerfell", "Carnegie", "Charles Montgomery Burns" };
-            GameInstance game2 = new GameInstance(newPlayers, board);
+            GameInstance game2 = new GameInstance(newPlayers);
 
             Console.ReadKey();
         }

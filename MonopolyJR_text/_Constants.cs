@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace MonopolyJR_text
 {
   static class Constants
@@ -11,5 +8,7 @@ namespace MonopolyJR_text
     public const int BathroomTax = 3;
     public const int TurnLimit = 100;
     public const int StartingMoney = 31;
+    public const bool FindWinner = false;
+    public const bool FindLoser = true; //these values are set because of xor used in GameInstance.Print
   }
 }
