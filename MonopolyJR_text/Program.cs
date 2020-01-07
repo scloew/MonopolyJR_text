@@ -9,17 +9,13 @@ namespace MonopolyJR_text
         {
             Console.WriteLine("Setting up board...\n\n");
 
-            Player[] players = new Player[2];
-            players[0] = new Player("Rockefeller");
-            System.Threading.Thread.Sleep(5000);
-            //timer to ensure better seeding of Player's rng
-            players[1] = new Player("Carnegie");
+            string[] players = {"Rockerfell", "Carnegie" };
 
             MonopolySquare[] board = new MonopolySquare[32];
             BoardBuilder.BuildBoard(board);
-            foreach (Player p in players)
+            foreach (string p in players)
             {
-                Console.Write(p.getInfo());
+                Console.WriteLine(p);
             }
             GameInstance game = new GameInstance(players, board);
 
@@ -27,19 +23,10 @@ namespace MonopolyJR_text
 
             Console.ReadKey();
 
-            //Player[] newPlayers = { players[0], players[1], new Player("Charles Montgomery Burns") };
-            //foreach (Player p in newPlayers)
-            //{
-            //    Console.Write(p.getInfo());
-            //} //should game instance create players? -> probably
-            
-            //players[0] = new Player("Rockefeller");
-            //System.Threading.Thread.Sleep(5000);
-            ////timer to ensure better seeding of Player's rng
-            //players[1] = new Player("Carnegie");
-            //GameInstance game2 = new GameInstance(newPlayers, board);
+            string[] newPlayers = { "Rockerfell", "Carnegie", "Charles Montgomery Burns" };
+            GameInstance game2 = new GameInstance(newPlayers, board);
 
-            //Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }

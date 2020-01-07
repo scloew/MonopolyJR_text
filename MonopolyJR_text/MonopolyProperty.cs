@@ -48,7 +48,7 @@ namespace MonopolyJR_text
         protected override void PrintActionMessage(string playerName)
         {
             Print(playerName);
-            Print = name => { Console.WriteLine($"{name} pays {Owner.Name} #{Rent}"); };
+            Print = name => { Console.WriteLine($"{name} pays {Owner.Name} ${Rent}"); };
         }
     }
 }

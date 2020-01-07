@@ -6,13 +6,15 @@ namespace MonopolyJR_text
     {
         public string Name { get; set; }
         public int Money { get; set; } //do I want setters
-        public int Location { get; set; }
+
+        private int _Location;
+        public int Location { get { return _Location; } set { _Location = value % 32; } }
         private Random RNG;
 
-        public Player(string name)
+        public Player(string name) //could overload this to allow for custom setting of starting money
         {
             Name = name;
-            Money = 31;
+            Money = Constants.StartingMoney;
             RNG = new Random();
         }
 
@@ -31,21 +33,22 @@ namespace MonopolyJR_text
             return ($"{Name} {Money}\n");
         }
 
-        public int getLocation()
-        {
-            return Location;
-        }
+        //public int getLocation()
+        //{
+        //    return Location;
+        //}
 
-        public void setLocation(int n)
-        {
-            Location = n % 32;
-            //Ideally the board size (32) would not be hard coded
-        }
+        //public void setLocation(int n)
+        //{
+        //    Location = n % 32;
+        //    //Ideally the board size (32) would not be hard coded
+        //}
 
         public void move()
         {
             int roll = RNG.Next(1, 7);
-            setLocation(Location + roll);
+            //setLocation(Location + roll);
+            this.Location=Location+roll;
             Console.WriteLine($"{Name} rolls {roll}");
         }
     }

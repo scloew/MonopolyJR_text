@@ -1,9 +1,5 @@
-﻿1) Have game instance self contained -> i.e. creates players
-3) check for circular references; properties/monopoly
+﻿3) check for circular references; properties/monopoly
 4) arrays -> List
 5) hooman player
-6) FIX GITHUB YOU BUM!!!!!!!!!!!!!!!!
-8) passing go -> not sure adding money correctly
 9) should print notice of monopoly
 10) better way to display what's happening without having to do full gui?
-11) cap method names per convention

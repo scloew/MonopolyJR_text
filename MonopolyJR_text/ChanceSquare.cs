@@ -30,7 +30,8 @@ namespace MonopolyJR_text
             else //else move
             {
                 ChanceAffect = RNG.Next(0, 31);
-                p.setLocation(ChanceAffect);
+                //p.setLocation(ChanceAffect);
+                p.Location = ChanceAffect;
                 pd = name => { Console.WriteLine($"Chance moves anme to {ChanceAffect}"); };
       }
 

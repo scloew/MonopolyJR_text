@@ -12,14 +12,17 @@ namespace MonopolyJR_text
    but also kinda overkill  
    */
   {
-    private Player[] Players;
+        List<Player> Players;
         private MonopolySquare[] Board;
         private bool EndGame;
 
-
-        public GameInstance(Player[] players, MonopolySquare[] board)
+        public GameInstance(String[] players, MonopolySquare[] board)
         {
-            Players = players;
+            Players = new List<Player>();
+            foreach(string name in players) {
+               Players.Add(new Player(name));
+               System.Threading.Thread.Sleep(500); //force sleep to ensure better seeding
+            } //TODO is there a way to do this with LINQ?
             Board = board;
             EndGame = false;
 
@@ -62,15 +65,15 @@ namespace MonopolyJR_text
 
         private void takeTurn(Player activePlayer)
         {
-            int origLoc = activePlayer.getLocation();
+            int origLoc = activePlayer.Location;
             activePlayer.move();
             int loc;
             do
             {
-                loc = activePlayer.getLocation();
+                loc = activePlayer.Location;
                 Console.WriteLine($"{activePlayer.Name} moves to {Board[loc].Name}");
-                Board[activePlayer.getLocation()].Action(activePlayer);
-            } while (loc != activePlayer.getLocation() && !activePlayer.isBankRupt());
+                Board[activePlayer.Location].Action(activePlayer);
+            } while (loc != activePlayer.Location && !activePlayer.isBankRupt());
             if (loc < origLoc)
             {
               Console.WriteLine($"{activePlayer.Name} passes Go and collects {Constants.PassGoBonues }");
@@ -83,13 +86,13 @@ namespace MonopolyJR_text
             Console.WriteLine($"========\n Turn: {TurnIndex} \n========\n");
             foreach (Player p in Players)
             {
-                Console.WriteLine($"{p.Name} has {p.Money}");
+                Console.WriteLine($"{p.Name} has ${p.Money} and is at square {p.Location} => {Board[p.Location].Name}");
             }
         }
 
         private void turn()
         {
-            for (int i = 0; i < Players.Length && !EndGame; i++)
+            for (int i = 0; i < Players.Count && !EndGame; i++)
             {
                 takeTurn(Players[i]);
                 EndGame = Players[i].isBankRupt();

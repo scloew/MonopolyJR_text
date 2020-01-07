@@ -12,7 +12,7 @@ namespace MonopolyJR_text
 
         public MonopolySquare(string name)
         {
-            this.Name = name;
+            Name = name;
         }
 
         public abstract void Action(Player p);

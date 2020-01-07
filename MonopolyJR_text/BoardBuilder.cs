@@ -47,8 +47,8 @@ namespace MonopolyJR_text
 
         private static void BuildTax(MonopolySquare[] board, LooseChange lc)
         {
-            board[8] = new TaxSquare("fire works", 2, lc);
-            board[24] = new TaxSquare("water works", 2, lc);
+            board[8] = new TaxSquare("fire works", Constants.Tax, lc);
+            board[24] = new TaxSquare("water works", Constants.Tax, lc);
         }
 
         private static void BuildSingletons(MonopolySquare[] board, LooseChange lc)
@@ -56,7 +56,7 @@ namespace MonopolyJR_text
         {
             board[0] = new GoSquare("Go");
             board[10] = new Bathroom("bathroom");
-            board[26] = new GoToBathroom("Go to bathroom", 3, lc);
+            board[26] = new GoToBathroom("Go to bathroom", Constants.BathroomTax, lc, 10);
             board[1] = board[4] = board[9] = board[17] =
                  board[20] = board[25] = new ChanceSquare("Chance");
         }

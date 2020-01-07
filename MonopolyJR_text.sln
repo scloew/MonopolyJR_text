@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonopolyJR_text", "MonopolyJR_text\MonopolyJR_text.csproj", "{A4185FA6-F97B-41E2-A1E0-72A7B0A92621}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonopolyJR_text", "MonopolyJR_text\MonopolyJR_text.csproj", "{A4185FA6-F97B-41E2-A1E0-72A7B0A92621}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
