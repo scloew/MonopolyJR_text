@@ -1,3 +1,2 @@
 ﻿5) hooman player
 10) better way to display what's happening without having to do full gui?
-11) Classes that are squares in board should end in "Square" and/or property should go in it's own folder
