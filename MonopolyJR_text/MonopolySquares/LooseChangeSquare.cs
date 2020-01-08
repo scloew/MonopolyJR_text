@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MonopolyJR_text
 {
-    class LooseChange : MonopolySquare
+    class LooseChangeSquare : MonopolySquare
     {
         private int MoneyPot;
 
-        public LooseChange(string name) : base(name)
+        public LooseChangeSquare(string name) : base(name)
         {
             MoneyPot = 0;
         }

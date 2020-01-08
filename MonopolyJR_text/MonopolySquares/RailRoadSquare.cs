@@ -2,10 +2,10 @@
 
 namespace MonopolyJR_text
 {
-    class RailRoad : MonopolySquare
+    class RailRoadSquare : MonopolySquare
     {
 
-        public RailRoad(string name) : base(name)
+        public RailRoadSquare(string name) : base(name)
         {
         }
 

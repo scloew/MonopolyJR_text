@@ -8,7 +8,7 @@ namespace MonopolyJR_text
         public static List<MonopolySquare> BuildBoard()
         {
             List<MonopolySquare> board = new List<MonopolySquare>(new MonopolySquare[32]);
-            LooseChange lc = new LooseChange("loose change");
+            LooseChangeSquare lc = new LooseChangeSquare("loose change");
             board[16] = lc;
             BuildProperties(board);
             BuildRailroads(board);
@@ -28,8 +28,8 @@ namespace MonopolyJR_text
             foreach (Tuple<int, int, string> prop in properties)
             //loop to initialize all board properties
             {
-                MonopolyProperty mp1 = new MonopolyProperty($"{prop.Item3} 1", prop.Item2);
-                MonopolyProperty mp2 = new MonopolyProperty($"{prop.Item3} 2", prop.Item2);
+                PropertySquare mp1 = new PropertySquare($"{prop.Item3} 1", prop.Item2);
+                PropertySquare mp2 = new PropertySquare($"{prop.Item3} 2", prop.Item2);
 
                 PropertyPair monopoly = new PropertyPair(mp1, mp2);
                 mp1.SetCheckMonopoly(monopoly);
@@ -47,22 +47,22 @@ namespace MonopolyJR_text
 
             foreach (Tuple<int, string> r in railRoads)
             {
-                board[r.Item1] = new RailRoad(r.Item2);
+                board[r.Item1] = new RailRoadSquare(r.Item2);
 
             }
         }
 
-        private static void BuildTax(List<MonopolySquare> board, LooseChange lc)
+        private static void BuildTax(List<MonopolySquare> board, LooseChangeSquare lc)
         {
             board[8] = new TaxSquare("fire works", Constants.Tax, lc);
             board[24] = new TaxSquare("water works", Constants.Tax, lc);
         }
 
-        private static void BuildSingletons(List<MonopolySquare> board, LooseChange lc)
+        private static void BuildSingletons(List<MonopolySquare> board, LooseChangeSquare lc)
         //Build Squares for which there is only one instance
         {
             board[0] = new GoSquare("Go");
-            board[10] = new Bathroom("bathroom");
+            board[10] = new BathroomSquare("bathroom");
             board[26] = new GoToBathroom("Go to bathroom", Constants.BathroomTax, lc, 10);
             board[1] = board[4] = board[9] = board[17] =
                  board[20] = board[25] = new ChanceSquare("Chance");

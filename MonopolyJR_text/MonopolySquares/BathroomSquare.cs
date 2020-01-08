@@ -2,9 +2,9 @@
 
 namespace MonopolyJR_text
 {
-    class Bathroom : MonopolySquare
+    class BathroomSquare : MonopolySquare
     {
-        public Bathroom(string name) : base(name) { }
+        public BathroomSquare(string name) : base(name) { }
         
         public override void Action(Player p)
         {

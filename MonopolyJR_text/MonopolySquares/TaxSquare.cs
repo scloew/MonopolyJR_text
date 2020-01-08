@@ -10,7 +10,7 @@ namespace MonopolyJR_text
         private readonly DepositToLooseChange Deposit;
 
 
-        public TaxSquare(string name, int tax, LooseChange lc) : base(name)
+        public TaxSquare(string name, int tax, LooseChangeSquare lc) : base(name)
         {
             Tax = tax;
             Deposit = lc.AddMoney;

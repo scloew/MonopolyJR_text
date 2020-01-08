@@ -6,10 +6,10 @@ namespace MonopolyJR_text
 {
   class PropertyPair
   {
-    private readonly MonopolyProperty PropertyOne;
-    private readonly MonopolyProperty PropertyTwo;
+    private readonly PropertySquare PropertyOne;
+    private readonly PropertySquare PropertyTwo;
 
-    public PropertyPair(MonopolyProperty mp1, MonopolyProperty mp2)
+    public PropertyPair(PropertySquare mp1, PropertySquare mp2)
     {
       PropertyOne = mp1;
       PropertyTwo = mp2;

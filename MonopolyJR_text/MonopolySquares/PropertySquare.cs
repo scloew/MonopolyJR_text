@@ -2,7 +2,7 @@
 
 namespace MonopolyJR_text
 {
-    class MonopolyProperty : MonopolySquare
+    class PropertySquare : MonopolySquare
     {
         private int Rent;
         public Player Owner { get; set; }
@@ -17,7 +17,7 @@ namespace MonopolyJR_text
         private MonopolyChecker CheckMonopoly;
 
 
-        public MonopolyProperty(string name, int rent) : base(name)
+        public PropertySquare(string name, int rent) : base(name)
         {
             Rent = rent;
             CheckMonopoly = () => { throw new Exception("CheckMonopoly never properly set"); };

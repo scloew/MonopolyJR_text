@@ -6,7 +6,7 @@ namespace MonopolyJR_text
     {
        private readonly int BathroomLocation;
 
-        public GoToBathroom(string name, int tax, LooseChange lc, int bathroomLocation) : base(name, tax, lc)
+        public GoToBathroom(string name, int tax, LooseChangeSquare lc, int bathroomLocation) : base(name, tax, lc)
         {
             BathroomLocation = bathroomLocation;
         }
