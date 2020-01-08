@@ -4,9 +4,8 @@ namespace MonopolyJR_text
 {
     class MonopolyProperty : MonopolySquare
     {
-        public int Rent { get; set; }
+        private int Rent;
         public Player Owner { get; set; }
-        public MonopolyProperty Neighbor { get; set; } //need to resolve this ciruclar reference
 
         delegate void actionDelegate(Player p);
         private actionDelegate ActionDel; 
@@ -14,26 +13,29 @@ namespace MonopolyJR_text
         delegate void printDelegate(string p);
         private printDelegate Print;
 
+        delegate void MonopolyChecker();
+        private MonopolyChecker CheckMonopoly;
+
 
         public MonopolyProperty(string name, int rent) : base(name)
         {
             Rent = rent;
+            CheckMonopoly = () => { throw new Exception("CheckMonopoly never properly set"); };
             ActionDel = player => 
             {
               Owner = player;
               player.AddMoney(-1 * Rent);
-
-              if (Neighbor.Owner == player)
-              {
-                SetMonop();
-                Neighbor.SetMonop();
-              } //TODO fix circular reference
+              CheckMonopoly();
             };
-
             Print = playerName => { Console.WriteLine($"{playerName} pays ${Rent} to purchase {Name}"); };
         }
 
-        public void SetMonop()
+        public void SetCheckMonopoly(PropertyPair monopoly)
+        {
+          CheckMonopoly = monopoly.CheckMonopoly;
+        }
+
+        public void SetMonopoly()
         {
             Rent *= 2;
         }

@@ -31,9 +31,9 @@ namespace MonopolyJR_text
                 MonopolyProperty mp1 = new MonopolyProperty($"{prop.Item3} 1", prop.Item2);
                 MonopolyProperty mp2 = new MonopolyProperty($"{prop.Item3} 2", prop.Item2);
 
-                mp1.Neighbor = mp2;
-                mp2.Neighbor = mp1;
-
+                PropertyPair monopoly = new PropertyPair(mp1, mp2);
+                mp1.SetCheckMonopoly(monopoly);
+                mp2.SetCheckMonopoly(monopoly);
                 board[prop.Item1] = mp1;
                 board[prop.Item1 + 1] = mp2;
             }
