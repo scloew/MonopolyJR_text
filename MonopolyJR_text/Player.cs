@@ -18,37 +18,25 @@ namespace MonopolyJR_text
             RNG = new Random();
         }
 
-        public void addMoney(int n)
+        public void AddMoney(int n)
         {
             Money += n;
         }
 
-        public bool isBankRupt()
+        public bool IsBankrupt()
         {
             return Money <= 0;
         }
 
-        public string getInfo()
+        public string GetInfo()
         {
             return ($"{Name} {Money}\n");
         }
 
-        //public int getLocation()
-        //{
-        //    return Location;
-        //}
-
-        //public void setLocation(int n)
-        //{
-        //    Location = n % 32;
-        //    //Ideally the board size (32) would not be hard coded
-        //}
-
-        public void move()
+        public void Move()
         {
             int roll = RNG.Next(1, 7);
-            //setLocation(Location + roll);
-            this.Location=Location+roll;
+            Location=Location+roll;
             Console.WriteLine($"{Name} rolls {roll}");
         }
     }

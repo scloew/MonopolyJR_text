@@ -21,19 +21,19 @@ namespace MonopolyJR_text
             ActionDel = player => 
             {
               Owner = player;
-              player.addMoney(-1 * Rent);
+              player.AddMoney(-1 * Rent);
 
               if (Neighbor.Owner == player)
               {
-                setMonop();
-                Neighbor.setMonop();
+                SetMonop();
+                Neighbor.SetMonop();
               } //TODO fix circular reference
             };
 
             Print = playerName => { Console.WriteLine($"{playerName} pays ${Rent} to purchase {Name}"); };
         }
 
-        public void setMonop()
+        public void SetMonop()
         {
             Rent *= 2;
         }
@@ -42,7 +42,7 @@ namespace MonopolyJR_text
         {
             PrintActionMessage(p.Name);
             ActionDel(p);
-            ActionDel = player => { Owner.addMoney(Rent); player.addMoney(-1 * Rent); };
+            ActionDel = player => { Owner.AddMoney(Rent); player.AddMoney(-1 * Rent); };
         }
 
         protected override void PrintActionMessage(string playerName)

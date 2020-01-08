@@ -6,11 +6,11 @@ namespace MonopolyJR_text
     class GameInstance
     /*
    Should have interface for playGame, takeTurn, printResults to make project more reusable, 
-   but also kinda overkill  
+   but also kinda overkill for what I'm wanting to do with this
    */
   {
         List<Player> Players;
-        private List<MonopolySquare> Board;
+        private readonly List<MonopolySquare> Board;
         private bool EndGame;
 
         public GameInstance(String[] players, List<MonopolySquare> board = null)
@@ -20,17 +20,17 @@ namespace MonopolyJR_text
             }
             Players = new List<Player>();
             foreach(string name in players) {
-               Players.Add(new Player(name));
-               System.Threading.Thread.Sleep(500); //force sleep to ensure better seeding
-            } //TODO is there a way to do this with LINQ?
+                Players.Add(new Player(name));
+                System.Threading.Thread.Sleep(500); //force sleep to ensure better seeding
+            }
             Board = board;
             EndGame = false;
 
-            playGame();
+            PlayGame();
         }
 
 
-        private void print(int winScore, bool findLosers, string message)
+        private void Print(int winScore, bool findLosers, string message)
         //findLosers = 1 to print losers, 0 to find winners
         {
             foreach (Player p in Players)
@@ -42,7 +42,7 @@ namespace MonopolyJR_text
             }
         }
 
-        private int getWinnerScore()
+        private int GetWinnerScore()
         //Returns the maximum score of any players
         {
             int winSum = 0;
@@ -53,35 +53,35 @@ namespace MonopolyJR_text
             return winSum;
         }
 
-        private void printResults()
+        private void PrintResults()
         {
-            int winScore = getWinnerScore();
+            int winScore = GetWinnerScore();
 
             Console.WriteLine("\n*******\nWinners\n*******\n");
-            print(winScore, Constants.FindWinner, "wins the game!!!!!");
+            Print(winScore, Constants.FindWinner, "wins the game!!!!!");
             Console.WriteLine("*******\nLosers\n*******\n");
-            print(winScore, Constants.FindLoser, "loses the game :(");
+            Print(winScore, Constants.FindLoser, "loses the game :(");
         }
 
-        private void takeTurn(Player activePlayer)
+        private void TakeTurn(Player activePlayer)
         {
             int origLoc = activePlayer.Location;
-            activePlayer.move();
+            activePlayer.Move();
             int loc;
             do
             {
                 loc = activePlayer.Location;
                 Console.WriteLine($"{activePlayer.Name} moves to {Board[loc].Name}");
                 Board[activePlayer.Location].Action(activePlayer);
-            } while (loc != activePlayer.Location && !activePlayer.isBankRupt());
+            } while (loc != activePlayer.Location && !activePlayer.IsBankrupt());
             if (loc < origLoc)
             {
-              Console.WriteLine($"{activePlayer.Name} passes Go and collects {Constants.PassGoBonues }");
-              activePlayer.addMoney(Constants.PassGoBonues);
+                Console.WriteLine($"{activePlayer.Name} passes Go and collects ${Constants.PassGoBonues }");
+                activePlayer.AddMoney(Constants.PassGoBonues);
             }
     }
 
-        private void printTurnIndex(int TurnIndex)
+        private void PrintTurnIndex(int TurnIndex)
         {
             Console.WriteLine($"========\n Turn: {TurnIndex} \n========\n");
             foreach (Player p in Players)
@@ -90,27 +90,27 @@ namespace MonopolyJR_text
             }
         }
 
-        private void turn()
+        private void Turn()
         {
             for (int i = 0; i < Players.Count && !EndGame; i++)
             {
-                takeTurn(Players[i]);
-                EndGame = Players[i].isBankRupt();
+                TakeTurn(Players[i]);
+                EndGame = Players[i].IsBankrupt();
             }
         }
 
-        private void playGame()
+        private void PlayGame()
         {
             Player activePlayer = Players[0];
             int turnCounter = 1;
  
             do
             {
-                printTurnIndex(turnCounter);
-                turn();
+                PrintTurnIndex(turnCounter);
+                Turn();
                 turnCounter += 1;
             } while (!EndGame && turnCounter < Constants.TurnLimit);
-            printResults();
+            PrintResults();
         }
     }
 }

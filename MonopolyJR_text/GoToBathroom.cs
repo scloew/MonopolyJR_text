@@ -4,18 +4,18 @@ namespace MonopolyJR_text
 {
     class GoToBathroom : TaxSquare
     {
-       private int SquareLocation;
+       private readonly int BathroomLocation;
 
-        public GoToBathroom(string name, int tax, LooseChange lc, int squareLocation) : base(name, tax, lc)
+        public GoToBathroom(string name, int tax, LooseChange lc, int bathroomLocation) : base(name, tax, lc)
         {
-           SquareLocation = squareLocation;
+            BathroomLocation = bathroomLocation;
         }
 
         public override void Action(Player p)
         {
             base.Action(p);
             PrintActionMessage(p.Name);
-            p.Location = SquareLocation; //TODO magic number
+            p.Location = BathroomLocation;
         }
 
         protected override void PrintActionMessage(string playerName)

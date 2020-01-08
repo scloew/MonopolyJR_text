@@ -7,19 +7,19 @@ namespace MonopolyJR_text
         protected int Tax;
 
         delegate void DepositToLooseChange(int money);
-        private DepositToLooseChange Deposit;
+        private readonly DepositToLooseChange Deposit;
 
 
         public TaxSquare(string name, int tax, LooseChange lc) : base(name)
         {
             Tax = tax;
-            Deposit = lc.addMoney;
+            Deposit = lc.AddMoney;
         }
 
         public override void Action(Player p)
         {
             PrintActionMessage(p.Name);
-            p.addMoney(-1 * Tax);
+            p.AddMoney(-1 * Tax);
             Deposit(Tax);
         }
 

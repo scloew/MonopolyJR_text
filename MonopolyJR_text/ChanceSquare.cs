@@ -2,9 +2,12 @@
 
 namespace MonopolyJR_text
 {
-
     class ChanceSquare : MonopolySquare
     {
+
+        private const int AddMoney = 1;
+        private const int Move = 2;
+
 
         private Random RNG;
         private int ChanceAffect;
@@ -19,21 +22,21 @@ namespace MonopolyJR_text
 
         public override void Action(Player p)
         {
-            int action = RNG.Next(1, 2);
+            int action = RNG.Next(AddMoney, Move);
 
-            if (action == 1) //add money
+            if (action == AddMoney) //add money
             {
                 ChanceAffect = RNG.Next(-5, 6);
-                p.addMoney(ChanceAffect);
+                p.AddMoney(ChanceAffect);
                 pd = name => {Console.WriteLine($"Chance adds ${ChanceAffect} to {name}"); };
             }
             else //else move
             {
-                ChanceAffect = RNG.Next(0, 31);
-                //p.setLocation(ChanceAffect);
+                //TODO This shouldn't be hard coded; if board size isn't 32 will cause error
+                ChanceAffect = RNG.Next(0, 31); 
                 p.Location = ChanceAffect;
                 pd = name => { Console.WriteLine($"Chance moves anme to {ChanceAffect}"); };
-      }
+            }
 
             PrintActionMessage(p.Name);
         }

@@ -5,12 +5,22 @@ namespace MonopolyJR_text
 {
     static class BoardBuilder
     {
-
+        public static List<MonopolySquare> BuildBoard()
+        {
+            List<MonopolySquare> board = new List<MonopolySquare>(new MonopolySquare[32]);
+            LooseChange lc = new LooseChange("loose change");
+            board[16] = lc;
+            BuildProperties(board);
+            BuildRailroads(board);
+            BuildTax(board, lc);
+            BuildSingletons(board, lc);
+            return board;
+        }
 
         private static void BuildProperties(List<MonopolySquare> board)
         {
             //Tuple<board index, rent price, name>
-            Tuple<int, int, string>[] properties = { Tuple.Create(2, 1, "Magenta"),  Tuple.Create(6, 2, "Azure"),
+            Tuple<int, int, string>[] properties = { Tuple.Create(2,  1, "Magenta"),  Tuple.Create(6, 2, "Azure"),
                                                      Tuple.Create(11, 2, "Purple"), Tuple.Create(14, 3, "Orange"),
                                                      Tuple.Create(18, 3, "Red"), Tuple.Create(22, 4, "Yellow"),
                                                      Tuple.Create(27, 4, "Green"), Tuple.Create(30, 5, "Blue")};
@@ -57,17 +67,5 @@ namespace MonopolyJR_text
             board[1] = board[4] = board[9] = board[17] =
                  board[20] = board[25] = new ChanceSquare("Chance");
         }
-
-        public static List<MonopolySquare> BuildBoard()
-        {
-            List<MonopolySquare> board = new List<MonopolySquare>(new MonopolySquare[32]);
-            LooseChange lc = new LooseChange("loose change");
-            board[16] = lc;
-            BuildProperties(board);
-            BuildRailroads(board);
-            BuildTax(board, lc);
-            BuildSingletons(board, lc);
-            return board;
-        } //Should I have this return something?
     }
 }

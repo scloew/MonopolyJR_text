@@ -10,15 +10,9 @@ namespace MonopolyJR_text
             Console.WriteLine("Setting up board...\n\n");
 
             string[] players = {"Rockerfell", "Carnegie" };
-
-            foreach (string p in players)
-            {
-                Console.WriteLine(p);
-            }
             GameInstance game = new GameInstance(players);
-
+           
             Console.WriteLine("Enter enter key to begin new game");
-
             Console.ReadKey();
 
             string[] newPlayers = { "Rockerfell", "Carnegie", "Charles Montgomery Burns" };

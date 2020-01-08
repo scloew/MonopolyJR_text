@@ -12,7 +12,7 @@ namespace MonopolyJR_text
         public override void Action(Player p)
         {
             PrintActionMessage(p.Name);
-            p.move();
+            p.Move();
         }
 
         protected override void PrintActionMessage(string playerName)

@@ -18,17 +18,16 @@ namespace MonopolyJR_text
         public override void Action(Player p)
         {
             PrintActionMessage(p.Name);
-            p.addMoney(MoneyPot);
+            p.AddMoney(MoneyPot);
             MoneyPot = 0;
         }
 
         protected override void PrintActionMessage(string playerName)
         {
             Console.WriteLine($"{playerName} collects ${MoneyPot} from loose change jar");
-
         }
 
-        public void addMoney(int n)
+        public void AddMoney(int n)
         {
             MoneyPot += n;
         }
