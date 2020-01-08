@@ -29,8 +29,57 @@ namespace MonopolyJR_text
             PlayGame();
         }
 
+        private void PlayGame()
+        {
+            Player activePlayer = Players[0];
+            int turnCounter = 1;
+ 
+            do
+            {
+                PrintTurnIndex(turnCounter);
+                GameTurn();
+                turnCounter += 1;
+            } while (!EndGame && turnCounter < Constants.TurnLimit);
+            PrintResults();
+        }
+ 
+        private void GameTurn()
+        {
+            for (int i = 0; i < Players.Count && !EndGame; i++)
+            {
+                TakeTurn(Players[i]);
+                EndGame = Players[i].IsBankrupt();
+            }
+        }
 
-        private void Print(int winScore, bool findLosers, string message)
+        private void TakeTurn(Player activePlayer)
+        {
+            int origLoc = activePlayer.Location;
+            activePlayer.Move();
+            int loc;
+            do
+            {
+                loc = activePlayer.Location;
+                Console.WriteLine($"{activePlayer.Name} moves to {Board[loc].Name}");
+                Board[activePlayer.Location].Action(activePlayer);
+            } while (loc != activePlayer.Location && !activePlayer.IsBankrupt());
+            if (loc < origLoc)
+            {
+                Console.WriteLine($"{activePlayer.Name} passes Go and collects ${Constants.PassGoBonues }");
+                activePlayer.AddMoney(Constants.PassGoBonues);
+            }
+        }
+
+        private void PrintTurnIndex(int TurnIndex)
+        {
+            Console.WriteLine($"========\n Turn: {TurnIndex} \n========\n");
+            foreach (Player p in Players)
+            {
+                Console.WriteLine($"{p.Name} has ${p.Money} and is at square {p.Location} => {Board[p.Location].Name}");
+            }
+        }
+
+        private void PrintPlayerEndStatus(int winScore, bool findLosers, string message)
         //findLosers = 1 to print losers, 0 to find winners
         {
             foreach (Player p in Players)
@@ -58,59 +107,9 @@ namespace MonopolyJR_text
             int winScore = GetWinnerScore();
 
             Console.WriteLine("\n*******\nWinners\n*******\n");
-            Print(winScore, Constants.FindWinner, "wins the game!!!!!");
+            PrintPlayerEndStatus(winScore, Constants.FindWinner, "wins the game!!!!!");
             Console.WriteLine("*******\nLosers\n*******\n");
-            Print(winScore, Constants.FindLoser, "loses the game :(");
-        }
-
-        private void TakeTurn(Player activePlayer)
-        {
-            int origLoc = activePlayer.Location;
-            activePlayer.Move();
-            int loc;
-            do
-            {
-                loc = activePlayer.Location;
-                Console.WriteLine($"{activePlayer.Name} moves to {Board[loc].Name}");
-                Board[activePlayer.Location].Action(activePlayer);
-            } while (loc != activePlayer.Location && !activePlayer.IsBankrupt());
-            if (loc < origLoc)
-            {
-                Console.WriteLine($"{activePlayer.Name} passes Go and collects ${Constants.PassGoBonues }");
-                activePlayer.AddMoney(Constants.PassGoBonues);
-            }
-    }
-
-        private void PrintTurnIndex(int TurnIndex)
-        {
-            Console.WriteLine($"========\n Turn: {TurnIndex} \n========\n");
-            foreach (Player p in Players)
-            {
-                Console.WriteLine($"{p.Name} has ${p.Money} and is at square {p.Location} => {Board[p.Location].Name}");
-            }
-        }
-
-        private void Turn()
-        {
-            for (int i = 0; i < Players.Count && !EndGame; i++)
-            {
-                TakeTurn(Players[i]);
-                EndGame = Players[i].IsBankrupt();
-            }
-        }
-
-        private void PlayGame()
-        {
-            Player activePlayer = Players[0];
-            int turnCounter = 1;
- 
-            do
-            {
-                PrintTurnIndex(turnCounter);
-                Turn();
-                turnCounter += 1;
-            } while (!EndGame && turnCounter < Constants.TurnLimit);
-            PrintResults();
+            PrintPlayerEndStatus(winScore, Constants.FindLoser, "loses the game :(");
         }
     }
 }
