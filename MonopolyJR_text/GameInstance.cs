@@ -72,7 +72,7 @@ namespace MonopolyJR_text
 
         private void PrintTurnIndex(int TurnIndex)
         {
-            Console.WriteLine($"========\n Turn: {TurnIndex} \n========\n");
+            Console.WriteLine($"\n========\n Turn: {TurnIndex} \n========\n");
             foreach (Player p in Players)
             {
                 Console.WriteLine($"{p.Name} has ${p.Money} and is at square {p.Location} => {Board[p.Location].Name}");
