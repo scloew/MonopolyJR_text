@@ -5,7 +5,7 @@ namespace MonopolyJR_text
     class Player
     {
         public string Name { get; set; }
-        public int Money { get; set; } //do I want setters
+        public int Money { get; set; }
 
         private int _Location;
         public int Location { get { return _Location; } set { _Location = value % 32; } }

@@ -26,6 +26,7 @@ namespace MonopolyJR_text
               Owner = player;
               player.AddMoney(-1 * Rent);
               CheckMonopoly();
+              CheckMonopoly = null;
             };
             Print = playerName => { Console.WriteLine($"{playerName} pays ${Rent} to purchase {Name}"); };
         }

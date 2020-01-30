@@ -9,6 +9,7 @@ namespace MonopolyJR_text
     public const int TurnLimit = 100;
     public const int StartingMoney = 31;
     public const bool FindWinner = false;
-    public const bool FindLoser = true; //these values are set because of xor used in GameInstance.Print
+    public const bool FindLoser = true; //these values are set this way
+                                        //because of xor used in GameInstance.PrintPlayerEndStatus
   }
 }

@@ -110,6 +110,8 @@ namespace MonopolyJR_text
             PrintPlayerEndStatus(winScore, Constants.FindWinner, "wins the game!!!!!");
             Console.WriteLine("*******\nLosers\n*******\n");
             PrintPlayerEndStatus(winScore, Constants.FindLoser, "loses the game :(");
+            Console.WriteLine("Enter any key to conclude game....");
+            Console.ReadKey();
         }
     }
 }
